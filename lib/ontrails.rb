@@ -7,6 +7,20 @@ class Ontrails
   #
   # Arguments:
   #   language: (String)
+  
+  # add ssl certificates
+  @api_base = 'https://api.ontraport.com/'
+
+  @@api_key = ''
+  @@api_secret = ''
+  
+  def self.api_url
+
+  end
+
+  def self.request
+    raise AuthenticationError
+  end
 
 
   def self.hi(language)

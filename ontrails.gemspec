@@ -1,6 +1,8 @@
+require 'ontrails/version'
+
 Gem::Specification.new do |s|
   s.name        = 'ontrails'
-  s.version     = '0.0.0'
+  s.version     = Ontrails::VERSION
   s.date        = '2014-08-29'
 
   s.files       = ["lib/ontrails.rb",
