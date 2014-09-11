@@ -6,7 +6,7 @@ module Ontrails
     include Ontrails::APIOperations::Update
 
     def url
-      'https://api.ontraport.com/cdata.php'
+      api_base + 'cdata.php'
     end
   
     # Request: key
@@ -16,16 +16,12 @@ module Ontrails
     end
     
     def search
-
     end
 
     def add_section
-
     end
 
     def get_deleted_contacts
-
     end
-
   end
 end
