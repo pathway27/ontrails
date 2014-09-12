@@ -6,8 +6,7 @@ module Ontrails
           # Create blah
         end
 
-        def fetch(params={}, api_key=nil)
-
+        def fetch(params={})
         end
       
         def search

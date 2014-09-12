@@ -1,31 +1,39 @@
-class Ontrails
-  # Say hi to the world!
-  #
-  # Example:
-  #   >> Hola.hi("spanish")
-  #   => hola mundo
-  #
-  # Arguments:
-  #   language: (String)
-  
-  # add ssl certificates
-  @api_base = 'https://api.ontraport.com/'
+require 'httparty'
 
-  @@api_key = ''
-  @@api_secret = ''
-  
-  def self.api_url
+require 'ontrails/client'
 
-  end
+require 'ontrails/ontra_object'
+require 'ontrails/api_resource'
 
-  def self.request
-    raise AuthenticationError
-  end
+require 'ontrails/api_operations/create'
+require 'ontrails/api_operations/destroy'
+require 'ontrails/api_operations/read'
+require 'ontrails/api_operations/update'
+
+require 'ontrails/contact'
+
+module Ontrails
+  class << self
+    
+    # add ssl certificates
+    @api_base = 'https://api.ontraport.com/'
+
+#    @@api_key = ''
+    #@@api_secret = ''
+    
+    #def self.api_url
+
+    #end
+
+    #def self.request
+      #raise AuthenticationError
+    #end
 
 
-  def self.hi(language)
-    translator = Translator.new(language)
-    translator.hi
+    #def self.hi(language)
+      #translator = Translator.new(language)
+      #translator.hi
+    #end
   end
 end
 

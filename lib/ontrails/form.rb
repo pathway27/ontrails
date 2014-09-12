@@ -4,9 +4,7 @@ module Ontrails
       'https://api.ontraport.com/fdata.php'
     end
 
-
     def fetch
-
     end
   end
 end
