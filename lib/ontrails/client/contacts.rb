@@ -5,13 +5,13 @@ module Ontrails
   class Client
     module Contacts
       
-      def url
+      def self.url
         api_base + 'cdata.php'
       end
 
-      def contact_fetch(id)
+      def self.contact_fetch(id)
         params = {reqtype: "fetch", data: "<contact_id>#{id}</contact_id>"}
-        request(url, params)
+        Ontrails::Client.request(url, params)
       end 
 
     end

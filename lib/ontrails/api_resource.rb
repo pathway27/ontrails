@@ -16,20 +16,17 @@ module Ontrails
     end
 
     def url
-      unless id = self['id']
-        raise InvalidRequestError.new("Could not determine which URL to request: #{self.class} instance has invalid ID: #{id.inspect}", 'id')
-      end
-      "#{self.class.url}/#{CGI.escape(id)}"
+      self.class.url
     end
 
     def refresh
-      response, api_key = Stripe.request(:get, url, @api_key, @retrieve_options)
-      refresh_from(response, api_key)
+      response = Ontrails.request(url, @app_id, @app_key, @retrieve_options)
+      refresh_from(response)
       self
     end
 
-    def self.retrieve(id, api_key=nil)
-      instance = self.new(id, api_key)
+    def self.retrieve(id, app_id=nil, app_key=nil)
+      instance = self.new(id, app_id, app_key)
       instance.refresh
       instance
     end

@@ -1,11 +1,12 @@
-require 'nokogiri'
+require File.expand_path('../client/contacts', __FILE__)
 
 module Ontrails
   class Client
-    #include Contact
+    include HTTParty
+    include Contacts
     attr_accessor :app_id, :app_key
 
-    def initialize(app_id, app_key)
+    def initialize(app_id=nil, app_key=nil)
       @app_id = app_id
       @app_key = app_key
 
@@ -14,12 +15,14 @@ module Ontrails
     end
 
     def auth
-      { 'Appid' => app_id, 'Key' => app_key }
+      { 'app_id' => app_id, 'app_key' => app_key }
     end
 
-    def request(method, path, options)
-      options[:body].merge!(auth)
-      handle_response(Ontrails::Request.send(method, path, options))
+    def request(url, data)
+      data.merge!(auth)
+
+      args = "appid=#{data[:app_id]}&key=#{data[:app_key]}&reqType=fetch&data=#{data[:data]}"
+      response = HTTParty.post(url, body: args)
     end
 
     def handle_response(response)

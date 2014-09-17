@@ -1,0 +1,43 @@
+require 'json'
+require 'nokogiri'
+
+module Ontrails
+  class Contact < APIResource
+    include HTTParty
+    include Ontrails::APIOperations::Create
+    include Ontrails::APIOperations::Destroy
+    include Ontrails::APIOperations::Read
+    include Ontrails::APIOperations::Update
+
+    def self.url
+      api_base + 'cdata.php'
+    end
+
+    def self.contact_fetch(id)
+      params = {reqtype: "fetch", data: "<contact_id>#{id}</contact_id>"}
+      Ontrails::Client.request(url, params)
+    end 
+  
+    def self.template(id=24866)
+      data = {:appid => "2_22495_0MfyAMpQo", :key => "MBWUgVWnpW9arpD", :reqtype => "fetch", data: "<contact_id>#{id}</contact_id>"}
+      args = "appid=#{data[:appid]}&key=#{data[:key]}&reqType=fetch&data=#{data[:data]}"
+      response = HTTParty.post(url, body: args)
+    end 
+  
+    # Request: key
+    # Return: Contact record template
+    # Required Data: None
+    def key
+
+    end
+    
+    def search
+    end
+
+    def add_section
+    end
+
+    def get_deleted_contacts
+    end
+  end
+end

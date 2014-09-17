@@ -1,5 +1,7 @@
+require 'nokogiri'
 require 'httparty'
 
+require 'ontrails/version'
 require 'ontrails/client'
 
 require 'ontrails/ontra_object'
@@ -10,30 +12,47 @@ require 'ontrails/api_operations/destroy'
 require 'ontrails/api_operations/read'
 require 'ontrails/api_operations/update'
 
-require 'ontrails/contact'
+require 'ontrails/client/contacts'
 
 module Ontrails
   class << self
     
     # add ssl certificates
-    @api_base = 'https://api.ontraport.com/'
-
-#    @@api_key = ''
-    #@@api_secret = ''
+    api_base = 'https://api.ontraport.com/'
     
-    #def self.api_url
-
+#    class << self
+      #attr_accessor :app_id, :app_key
     #end
 
-    #def self.request
-      #raise AuthenticationError
+    #def self.api_url(url='')
+      #@api_base + url
     #end
 
+    #def self.request(url, app_id,  app_key, req_type, data={}, f_add=false, return_id=1, count=false, get_ids=false)
+      #raise AuthenticationError.new('No APP ID provided.') unless app_id ||= @app_id
+      #raise AuthenticationError.new('No APP KEY provided.') unless app_key ||= @app_key
 
-    #def self.hi(language)
-      #translator = Translator.new(language)
-      #translator.hi
+      #url = api_url(url)
+      #args = "appid=#{appid}&key=#{app_key}&reqType=#{req_type}&data=#{data}"
+      #begin 
+        #response = HTTParty.post(url, body: args)
+      #rescue Exception => e
+        #puts e
+      #end
+
+      #handle_response(response)
     #end
+
+    #def handle_response response
+      #xml = Nokogiri::XML(response)
+
+      #if xml.at_css('result').content =~ /failure/i
+        #puts 'error'
+      #end
+
+      #response
+    #end
+
   end
 end
 
