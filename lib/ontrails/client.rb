@@ -1,10 +1,19 @@
-require File.expand_path('../client/contacts', __FILE__)
+#require 'client/contacts'
+require 'ontrails/client/contacts'
+require 'ontrails/client/forms'
 
 module Ontrails
   class Client
     include HTTParty
+    base_uri 'https://api.ontraport.com/'
+
     include Contacts
+    include Forms
     attr_accessor :app_id, :app_key
+    
+    def api_base
+      'https://api.ontraport.com/'
+    end
 
     def initialize(app_id=nil, app_key=nil)
       @app_id = app_id
@@ -20,8 +29,11 @@ module Ontrails
 
     def request(url, data)
       data.merge!(auth)
+      args = "appid=#{data['app_id']}&key=#{data['app_key']}&reqType=#{data[:reqtype]}&data=#{data[:data]}"
 
-      args = "appid=#{data[:app_id]}&key=#{data[:app_key]}&reqType=fetch&data=#{data[:data]}"
+      id = data[:id]
+      args += "&id=#{id}" unless id.nil?
+
       response = HTTParty.post(url, body: args)
     end
 

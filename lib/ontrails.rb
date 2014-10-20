@@ -12,7 +12,6 @@ require 'ontrails/api_operations/destroy'
 require 'ontrails/api_operations/read'
 require 'ontrails/api_operations/update'
 
-require 'ontrails/client/contacts'
 
 module Ontrails
   class << self

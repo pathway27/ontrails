@@ -3,10 +3,10 @@ require 'nokogiri'
 
 module Ontrails
   class Client
-    module Contacts
+    module Forms
 
       def url
-        api_base + 'cdata.php'
+        api_base + 'fdata.php'
       end
       
       def xmlize(data)
@@ -18,18 +18,11 @@ module Ontrails
       # parse response xml
       # initalize obj with data
       # refresh/reload object?
-      def contact_fetch(id)
-        params = {reqtype: "fetch", data: "<contact_id>#{id}</contact_id>"}
+      def form_fetch(id)
+        params = {reqtype: "fetch", id: id}
         request(url, params)
       end
 
-      def contact_add(data)
-        # xmlize(data)
-        params = {reqtype: "add", data: data}
-        request(url, params)
-        # initailize contact obj.
-      end
-      
 #      class Contact
         #params = {reqtype: "add", data: "<contact_id>#{id}</contact_id>"}
         #request(url, params)
