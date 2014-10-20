@@ -1,3 +1,6 @@
+require 'rubygems'
+require 'active_support'
+
 require 'nokogiri'
 require 'httparty'
 

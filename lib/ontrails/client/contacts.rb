@@ -25,7 +25,8 @@ module Ontrails
 
       def contact_add(data)
         # xmlize(data)
-        params = {reqtype: "add", data: data}
+        
+        params = {reqtype: "add", data: data.to_xml}
         request(url, params)
         # initailize contact obj.
       end

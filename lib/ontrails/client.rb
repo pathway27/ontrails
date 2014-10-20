@@ -25,7 +25,7 @@ module Ontrails
 
     def auth
       { 'app_id' => app_id, 'app_key' => app_key }
-    end
+    nd
 
     def request(url, data)
       data.merge!(auth)
