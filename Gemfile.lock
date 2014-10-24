@@ -11,6 +11,8 @@ GEM
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     diff-lcs (1.2.5)
+    gyoku (1.2.2)
+      builder (>= 2.1.2)
     httparty (0.13.1)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -65,6 +67,7 @@ PLATFORMS
 
 DEPENDENCIES
   builder
+  gyoku (~> 1.0)
   httparty
   nokogiri
   pry

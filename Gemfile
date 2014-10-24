@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 # XML
 gem 'builder'
 gem 'nokogiri'
+gem 'gyoku', '~> 1.0'
 # JSON
 #gem 'json'
 

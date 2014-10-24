@@ -3,6 +3,9 @@ require 'ontrails/client/contacts'
 require 'ontrails/client/forms'
 
 module Ontrails
+  # init module as client...
+  # auth credentials
+
   class Client
     include HTTParty
     base_uri 'https://api.ontraport.com/'
@@ -25,7 +28,7 @@ module Ontrails
 
     def auth
       { 'app_id' => app_id, 'app_key' => app_key }
-    nd
+    end
 
     def request(url, data)
       data.merge!(auth)

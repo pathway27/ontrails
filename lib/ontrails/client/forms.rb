@@ -5,12 +5,12 @@ module Ontrails
   class Client
     module Forms
 
-      def url
+      def form_url
         api_base + 'fdata.php'
       end
       
       def xmlize(data)
-
+        
       end
 
       # change id to ids
@@ -20,10 +20,11 @@ module Ontrails
       # refresh/reload object?
       def form_fetch(id)
         params = {reqtype: "fetch", id: id}
-        request(url, params)
+        request(form_url, params)
       end
 
-#      class Contact
+
+      #class Contact
         #params = {reqtype: "add", data: "<contact_id>#{id}</contact_id>"}
         #request(url, params)
       #end

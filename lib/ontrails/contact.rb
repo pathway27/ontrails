@@ -2,16 +2,26 @@ require 'json'
 require 'nokogiri'
 
 module Ontrails
-  module Contact
+  class Contact
     
-    def url
-      api_base + 'cdata.php'
+    def self.url
+      Ontrails.api_base + 'cdata.php'
     end
 
-    def contact_fetch(id)
+    def self.fetch(id)
       params = {reqtype: "fetch", data: "<contact_id>#{id}</contact_id>"}
       request(url, params)
-    end 
+    end
 
+    def self.add(data)
+      params = {reqtype: "add", data: xmlize(data)}
+      request(url, params)
+    end
+
+    private
+
+      def xmlize(data)
+        Nokogiri::XML(data)
+      end
   end
 end

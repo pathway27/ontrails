@@ -12,7 +12,7 @@ describe Ontrails::Client do
   it 'initializes with correct key and id' do
     expect(@client.app_id).to eq(@api_id)
     expect(@client.app_key).to eq(@api_key)
-    expect(@client.auth).to eq({ 'Appid' => @api_id, 'Key' => @api_key })
+    expect(@client.auth).to eq({ 'app_id' => @api_id, 'app_key' => @api_key })
   end
 
 end

@@ -1,11 +1,15 @@
 require 'rubygems'
-require 'active_support'
 
 require 'nokogiri'
 require 'httparty'
+require 'gyoku'
+#Dir[File.dirname(__FILE__) + '/ontrails/*.rb'].each do |file|
+  #require file
+#end
 
 require 'ontrails/version'
 require 'ontrails/client'
+require 'ontrails/contact'
 
 require 'ontrails/ontra_object'
 require 'ontrails/api_resource'
@@ -17,10 +21,25 @@ require 'ontrails/api_operations/update'
 
 
 module Ontrails
+  @@api_base = 'https://api.ontraport.com/'
+
+  def self.api_base
+    @@api_base
+  end
   class << self
     
     # add ssl certificates
-    api_base = 'https://api.ontraport.com/'
+    # Ontrails.configure do |config|
+    #   config.app_id  =  'x'
+    #   config.app_key =  'x'
+    # end
+    # or secrets.yml
+    @@api_base = 'https://api.ontraport.com/'
+
+#    def configure
+      #yield self
+      #true
+#    end
     
 #    class << self
       #attr_accessor :app_id, :app_key
