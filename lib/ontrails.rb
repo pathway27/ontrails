@@ -1,6 +1,5 @@
 require 'rubygems'
 
-require 'nokogiri'
 require 'httparty'
 require 'gyoku'
 #Dir[File.dirname(__FILE__) + '/ontrails/*.rb'].each do |file|
@@ -26,6 +25,12 @@ module Ontrails
   def self.api_base
     @@api_base
   end
+
+  @config = {
+    :app_id,
+    :app_key
+  }
+
   class << self
     
     # add ssl certificates

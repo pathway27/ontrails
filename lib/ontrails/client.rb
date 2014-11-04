@@ -12,6 +12,7 @@ module Ontrails
 
     include Contacts
     include Forms
+    include Products
     attr_accessor :app_id, :app_key
     
     def api_base
@@ -29,6 +30,7 @@ module Ontrails
     def auth
       { 'app_id' => app_id, 'app_key' => app_key }
     end
+
 
     def request(url, data)
       data.merge!(auth)

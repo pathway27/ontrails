@@ -1,5 +1,4 @@
 require 'json'
-require 'nokogiri'
 
 module Ontrails
   class Client
@@ -13,9 +12,6 @@ module Ontrails
         Gyoku.xml data
       end
 
-      # change id to ids
-      # data auto xml
-      # parse response xml
       # initalize obj with data
       # refresh/reload object?
       def contact_fetch(id)
@@ -24,26 +20,53 @@ module Ontrails
       end
 
       def contact_add(data)
-        # fields.each do |field, value|
-        #  Gyoku.xml(:field => "#{value}", :attributes! => {:field => { :name => "#{field}" }})
-        # end 
-        xmlize(data)
+        xml_for_contact(data)
         params = {reqtype: "add", data: data}
         request(contacts_url, params)
-        # response
       end
 
       def contact_update(id, data)
-        # need to add contact id
-        xmlize(data)
+        xml_for_contact(data)
         params = {reqtype: "update", data: data, id: id}
         request(contacts_url, params)
       end
-      
-#      class Contact
-        #params = {reqtype: "add", data: "<contact_id>#{id}</contact_id>"}
-        #request(url, params)
-      #end
+
+      private
+       # params to xml?
+       def xml_for_contact(options)
+         attrs = {}
+         id = options.delete('id')
+         attrs[:id] = id if id
+         xml = Builder::XmlMarkup.new
+
+         xml.contact(attrs) do
+           options.each_key do |group_tag|
+             xml.Group_Tag(name: group_tag) do
+               options[group_tag].each do |field, value|
+                 xml.field(value, name: field)
+               end
+             end
+           end
+         end
+       end
+
+       def xml_for_search(options)
+         if options.is_a?(Hash)
+           options = [options]
+         end
+
+         xml = Builder::XmlMarkup.new
+         xml.search do
+           options.each do |option|
+             xml.equation do
+               xml.field option[:field]
+               xml.op option[:op]
+               xml.value option[:value]
+             end
+           end
+         end
+
+       end 
 
     end
   end

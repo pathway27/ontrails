@@ -6,7 +6,6 @@ describe Ontrails::Client do
     @api_id = 'foo'
     @api_key = 'bar'
     @client = Ontrails::Client.new @api_id, @api_key
-
   end
 
   it 'initializes with correct key and id' do
@@ -14,5 +13,4 @@ describe Ontrails::Client do
     expect(@client.app_key).to eq(@api_key)
     expect(@client.auth).to eq({ 'app_id' => @api_id, 'app_key' => @api_key })
   end
-
 end
