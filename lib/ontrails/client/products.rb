@@ -12,24 +12,30 @@ module Ontrails
       end
 
       def product_search_purchase(search_data)
-        data = xml_for_search(search_data)
+        data = xml_for_search(search_data).gsub('"', "'")
         params = {reqtype: "search_purchase", data: data}
         request(products_url, data)
         # xmlize search stuff
         # request
       end
 
-
       def xml_for_search(options)
-        xml = Builder::XmlMarkup.new
+         if options.is_a?(Hash)
+           options = [options]
+         end
 
-        xml.search do
-          xml.equation do
-            # syntax here
-            # eq
-          end
-        end
-      end
+         xml = Builder::XmlMarkup.new
+         xml.search do
+           options.each do |option|
+             xml.equation do
+               xml.field option[:field]
+               xml.op option[:op]
+               xml.value option[:value]
+             end
+           end
+         end
+
+       end 
 
     end
   end

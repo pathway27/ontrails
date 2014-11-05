@@ -13,4 +13,8 @@ describe Ontrails::Client do
     expect(@client.app_key).to eq(@api_key)
     expect(@client.auth).to eq({ 'app_id' => @api_id, 'app_key' => @api_key })
   end
+
+  it 'can use client methods' do
+    #expect(@client.app_id).to eq(@api_id)
+  end
 end

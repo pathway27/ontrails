@@ -26,10 +26,10 @@ module Ontrails
     @@api_base
   end
 
-  @config = {
-    :app_id,
-    :app_key
-  }
+#  @config = {
+    #:app_id,
+    #:app_key
+  #}
 
   class << self
     

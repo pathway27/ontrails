@@ -1,6 +1,7 @@
 #require 'client/contacts'
 require 'ontrails/client/contacts'
 require 'ontrails/client/forms'
+require 'ontrails/client/products'
 
 module Ontrails
   # init module as client...

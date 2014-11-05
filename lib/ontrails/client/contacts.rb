@@ -19,20 +19,22 @@ module Ontrails
         request(contacts_url, params)
       end
 
+      # contacts_add(
+      #   { 'Contact Information' => {'First Name' => 'Turtle', 'Last Name' => 'Jones', 'E-Mail' => 'mrturtles@example.com'} })
       def contact_add(data)
-        xml_for_contact(data)
-        params = {reqtype: "add", data: data}
+        xmlized_data = xml_for_contact(data).gsub('"', "'")
+        params = {reqtype: "add", data: xmlized_data}
         request(contacts_url, params)
       end
 
       def contact_update(id, data)
-        xml_for_contact(data)
-        params = {reqtype: "update", data: data, id: id}
+        xmlized_data = xml_for_contact(data).gsub('"', "'")
+        params = {reqtype: "update", data: xmlized_data, id: id}
         request(contacts_url, params)
       end
 
-      private
        # params to xml?
+       # returns escaped strings
        def xml_for_contact(options)
          attrs = {}
          id = options.delete('id')
@@ -50,23 +52,6 @@ module Ontrails
          end
        end
 
-       def xml_for_search(options)
-         if options.is_a?(Hash)
-           options = [options]
-         end
-
-         xml = Builder::XmlMarkup.new
-         xml.search do
-           options.each do |option|
-             xml.equation do
-               xml.field option[:field]
-               xml.op option[:op]
-               xml.value option[:value]
-             end
-           end
-         end
-
-       end 
 
     end
   end
