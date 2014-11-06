@@ -39,7 +39,7 @@ module Ontrails
 
       id = data[:id]
       args += "&id=#{id}" unless id.nil?
-
+      puts args
       response = HTTParty.post(url, body: args)
     end
 
