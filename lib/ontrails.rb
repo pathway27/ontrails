@@ -29,17 +29,16 @@ module Ontrails
     @@api_base
   end
 
-  def self.configure
-
+  def self.configuration
+    @configuration ||= Configuration.new
   end
 
-#  @config = {
-    #:app_id,
-    #:app_key
-  #}
+  def self.configure
+    yield(configuration) if block_given?
+  end
 
   class << self
-    
+    attr_accesor :configuration    
     # add ssl certificates
     # Ontrails.configure do |config|
     #   config.app_id  =  'x'

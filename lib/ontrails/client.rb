@@ -32,7 +32,6 @@ module Ontrails
       { 'app_id' => app_id, 'app_key' => app_key }
     end
 
-
     def request(url, data)
       data.merge!(auth)
       args = "appid=#{data['app_id']}&key=#{data['app_key']}&reqType=#{data[:reqtype]}&data=#{data[:data]}"
@@ -43,6 +42,7 @@ module Ontrails
       response = HTTParty.post(url, body: args)
     end
 
+    # create obj?
     def handle_response(response)
       xml = Nokogiri::XML(respose)
     
