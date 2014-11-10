@@ -1,9 +1,8 @@
 require 'spec_helper'
 
-describe Ontrails::Contact do
+describe Ontrails::Client do
   describe "default attributes" do
     it "must have the ontraport api endpoint" do
-      expect(Ontrails::Contact.url).to eq('https://api.ontraport.com/cdata.php')
     end
   end
 

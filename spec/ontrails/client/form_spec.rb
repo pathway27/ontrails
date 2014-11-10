@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-descrbe Ontrails::Form do
+describe Ontrails::Client do
   describe "default attributes" do
   
   end

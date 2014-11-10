@@ -21,18 +21,18 @@ module Ontrails
     end
 
     def initialize(app_id=nil, app_key=nil)
-      @app_id = app_id
-      @app_key = app_key
-
-      raise ArgumentError, "Missing required parameter: api_id" if @app_id.nil?
-      raise ArgumentError, "Missing required parameter: api_key" if @app_key.nil?
+      @app_id  = app_id  || Ontrails.app_id 
+      @app_key = app_key || Ontrails.app_key 
     end
 
     def auth
-      { 'app_id' => app_id, 'app_key' => app_key }
+      {'app_id' => app_id, 'app_key' => app_key}
     end
 
     def request(url, data)
+      raise ArgumentError, "Missing required parameter: api_id" if app_id.nil?
+      raise ArgumentError, "Missing required parameter: api_key" if app_key.nil?
+
       data.merge!(auth)
       args = "appid=#{data['app_id']}&key=#{data['app_key']}&reqType=#{data[:reqtype]}&data=#{data[:data]}"
 

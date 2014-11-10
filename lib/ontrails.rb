@@ -21,7 +21,7 @@ require 'ontrails/api_operations/update'
 
 
 module Ontrails
-  #extend Configuration
+  extend Configuration
 
   @@api_base = 'https://api.ontraport.com/'
 
@@ -29,16 +29,20 @@ module Ontrails
     @@api_base
   end
 
-  def self.configuration
-    @configuration ||= Configuration.new
+  def self.client(options={})
+    Ontrails::Client.new(options)
   end
 
-  def self.configure
-    yield(configuration) if block_given?
+  def self.method_missing(method, *args, &block)
+    return super unless client.respond_to?(method)
+    client.send(method, *args, &block)
   end
 
+  def self.respond_to?(method, include_all=false)
+    return client.respond_to?(method, include_all) || super
+  end
+  
   class << self
-    attr_accesor :configuration    
     # add ssl certificates
     # Ontrails.configure do |config|
     #   config.app_id  =  'x'
@@ -46,45 +50,6 @@ module Ontrails
     # end
     # or secrets.yml
     @@api_base = 'https://api.ontraport.com/'
-
-#    def configure
-      #yield self
-      #true
-#    end
-    
-#    class << self
-      #attr_accessor :app_id, :app_key
-    #end
-
-    #def self.api_url(url='')
-      #@api_base + url
-    #end
-
-    #def self.request(url, app_id,  app_key, req_type, data={}, f_add=false, return_id=1, count=false, get_ids=false)
-      #raise AuthenticationError.new('No APP ID provided.') unless app_id ||= @app_id
-      #raise AuthenticationError.new('No APP KEY provided.') unless app_key ||= @app_key
-
-      #url = api_url(url)
-      #args = "appid=#{appid}&key=#{app_key}&reqType=#{req_type}&data=#{data}"
-      #begin 
-        #response = HTTParty.post(url, body: args)
-      #rescue Exception => e
-        #puts e
-      #end
-
-      #handle_response(response)
-    #end
-
-    #def handle_response response
-      #xml = Nokogiri::XML(response)
-
-      #if xml.at_css('result').content =~ /failure/i
-        #puts 'error'
-      #end
-
-      #response
-    #end
-
   end
 end
 
