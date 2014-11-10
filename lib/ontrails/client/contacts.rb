@@ -52,7 +52,6 @@ module Ontrails
          end
        end
 
-
     end
   end
 end

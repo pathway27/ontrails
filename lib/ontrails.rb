@@ -7,6 +7,7 @@ require 'gyoku'
 #end
 
 require 'ontrails/version'
+require 'ontrails/configuration'
 require 'ontrails/client'
 require 'ontrails/contact'
 
@@ -20,10 +21,16 @@ require 'ontrails/api_operations/update'
 
 
 module Ontrails
+  #extend Configuration
+
   @@api_base = 'https://api.ontraport.com/'
 
   def self.api_base
     @@api_base
+  end
+
+  def self.configure
+
   end
 
 #  @config = {
