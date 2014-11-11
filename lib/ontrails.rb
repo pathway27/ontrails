@@ -1,10 +1,10 @@
 require 'rubygems'
-
-require 'httparty'
 #require 'gyoku'
 #Dir[File.dirname(__FILE__) + '/ontrails/*.rb'].each do |file|
   #require file
 #end
+
+require 'builder'
 
 require 'ontrails/version'
 require 'ontrails/configuration'
