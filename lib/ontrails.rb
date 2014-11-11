@@ -1,7 +1,7 @@
 require 'rubygems'
 
 require 'httparty'
-require 'gyoku'
+#require 'gyoku'
 #Dir[File.dirname(__FILE__) + '/ontrails/*.rb'].each do |file|
   #require file
 #end
