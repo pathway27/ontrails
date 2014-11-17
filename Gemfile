@@ -24,7 +24,3 @@ group :development do
   gem 'rake'
   gem 'rubocop'
 end
-
-#
-# CLI
-# gem 'thor'

@@ -33,6 +33,12 @@ module Ontrails
         request(contacts_url, params)
       end
 
+      def contact_search(data)
+        xml = xml_for_search(data)
+        params = {reqtype: "search", data: xml}
+        request(contacts_url, params)
+      end
+
        # params to xml?
        # returns escaped strings
        def xml_for_contact(options)
@@ -51,6 +57,23 @@ module Ontrails
            end
          end
        end
+
+      def xml_for_search(options)
+        if options.is_a?(Hash)
+          options = [options]
+        end
+
+        xml = Builder::XmlMarkup.new
+        xml.search do
+          options.each do |option|
+            xml.equation do
+              xml.field option[:field]
+              xml.op option[:op]
+              xml.value option[:value]
+            end
+          end
+        end
+      end
 
     end
   end

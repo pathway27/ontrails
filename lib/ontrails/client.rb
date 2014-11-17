@@ -1,4 +1,4 @@
-#require 'client/contacts'
+require 'httparty'
 require 'ontrails/client/contacts'
 require 'ontrails/client/forms'
 require 'ontrails/client/products'
@@ -28,7 +28,8 @@ module Ontrails
     def auth
       {'app_id' => app_id, 'app_key' => app_key}
     end
-
+      
+    # refresh/reload object?
     def request(url, data)
       raise ArgumentError, "Missing required parameter: api_id" if app_id.nil?
       raise ArgumentError, "Missing required parameter: api_key" if app_key.nil?
