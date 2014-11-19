@@ -29,7 +29,7 @@ module Ontrails
 
       # ID must be in data
       def contact_update(data)
-        id = data[:id]
+        id = data['id']
         return if id.nil?
         xmlized_data = xml_for_contact(data).gsub('"', "'")
         params = {reqtype: "update", data: xmlized_data}
